@@ -1,0 +1,52 @@
+body {
+	background: #fff;
+	color: #111;
+	font-family: "Open Sans","Segoe UI",Arial,sans-serif;
+	line-height: 1.6em;
+	padding: 20px;
+	font-size: 16px;
+}
+
+table.entries-table {
+
+    width: 230px;
+    text-align: center;
+    margin: 18px 0;
+}
+
+table.entries-table  td {
+	border-style: dashed;
+    border-width: 1px;
+}
+
+table.entries-table td.active {
+	    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+table.result-table {
+    position: absolute;
+    width: 300px;
+    top: 50%;
+    height: 220px;
+    left: 50%;
+    margin-left: -150px;
+    margin-top: -110px;
+    text-align: center;
+}
+
+table.result-table h1 {
+	font-size: 4em;
+}
+
+#add-entry {
+    padding: 9px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#input-num {
+	padding: 8px;
+    font-size: 16px;
+}
