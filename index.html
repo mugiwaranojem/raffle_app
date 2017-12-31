@@ -8,8 +8,20 @@
 <body>
 
 <div class="entries-container">
-	<input type="number" id="input-num" placeholder="Input entry">
-	<button id="add-entry">Add Entry</button>
+
+	<table class="input-form">
+		<tr>
+			<td><label>Name:</label></td>
+			<td><input type="text" id="input-name" placeholder="John Doe"></td>
+		</tr>
+		<tr>
+			<td><label>Entry Number:</label></td>
+			<td><input type="number" id="input-num" placeholder="####"></td>
+		</tr>
+		<tr>
+			<td colspan="2"><button id="add-entry">Add Entry</button></td>
+		</tr>
+	</table>
 
 	<table class="entries-table">
 		<thead>
@@ -20,7 +32,6 @@
 	</table>
 </div>
 
-
 <table class="result-table">
 	<tr>
 		<td><span>Random Number:</span></td>
@@ -29,147 +40,18 @@
 		<td><h1 id="result" class="result"></h1></td>
 	</tr>
 	<tr>
+		<td><h2 id="result-name" class="result-name"></h2></td>
+	</tr>
+	<tr>
 		<td colspan="2">
 			<button id="randomize">Randomize</button>
 			<button id="reset">Reset</button>
 		</td>
 	</tr>
 </table>
-	
-
 
 <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/odometer.min.js"></script>
-<script type="text/javascript">
-
-
-	
-</script>
-<script type="text/javascript">
-
-	var randomize = {
-		entries: [],
-		result: null,
-		od: null,
-		defaultMax: 1000,
-
-		init: function() {
-			const self = this;
-
-			self.result = document.querySelector('.result');
-			$('#add-entry').on('click', self.addEntry);
-			$('#randomize').on('click', self.getRandom);
-			$('#input-num').keypress(self.inputKeyPress);
-			$('#reset').on('click', self.reset);
-			$('table.entries-table').on('click', 'a.remove-entry', self.removeEntry);
-
-		},
-
-		getRandom: function() {
-			const self = randomize,
-				numLength = parseInt(self.entries.length);
-
-			let randomIndex = null;
-
-			if( numLength <= 0 ) return false;
-
-			randomIndex = Math.floor(Math.random() * numLength);
-
-			od = new Odometer({
-				el: self.result,
-				value: self.defaultMax,
-				format: 'd'
-			});
-
-			let resultNum = self.entries[randomIndex];
-
-			od.update( resultNum );
-
-			setTimeout(function(){ 
-				$('td.entry-val').removeClass('active');
-				$('#'+resultNum).find('td.entry-val')
-					.addClass('active');
-			}, 2000);
-
-			console.log(randomIndex);
-
-		},
-
-		addEntry: function() {
-			const self = randomize,
-				inputVal = $('#input-num').val();
-
-			if( !inputVal ) return;
-
-			if( self.entries.indexOf(inputVal) == 1 ) {
-				alert("Entry exist");
-				return;
-			}
-
-			self.entries.push( inputVal );
-
-			$('.entries-table tbody').append(
-				'<tr id="'+ inputVal +'">' +
-					'<td class="entry-val">'+ inputVal +'</td>' +
-					'<td><a href="#" class="remove-entry" title="remove">x</a></td>' +
-				'</tr>'
-			);
-
-			self.clearText();
-
-			console.log(self.entries);
-
-		},
-
-		removeEntry: function(e) {
-			e.preventDefault();
-
-			const self = randomize,
-				entryVal = $(this).closest('tr').attr('id'),
-				index = self.entries.indexOf(entryVal);
-
-
-			$('#'+entryVal).fadeOut(function(){
-				$('#'+entryVal).remove();
-			});
-
-			self.entries.splice(index, 1);
-
-			self.clearText();
-
-			console.log( self.entries );
-
-		},
-
-		inputKeyPress: function(e) {
-			const self = randomize;
-			if (e.which == 13 || e.keyCode == 13) {
-				self.addEntry();
-			}
-		},
-
-		clearText: function() {
-			$('#input-num').val('');
-		},
-
-		reset: function() {
-			const self = randomize;
-
-			let y = confirm('Reset entries?');
-
-			if( !y ) return;
-
-			self.entries = [];
-			self.result.innerText = '';
-
-			$('.entries-table tbody').find('tr').remove();
-
-		}
-	}
-
-	randomize.init();
-
-
-</script>
+<script type="text/javascript" src="js/site-script.js"></script>
 </body>
 </html>

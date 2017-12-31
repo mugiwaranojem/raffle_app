@@ -7,11 +7,15 @@ body {
 	font-size: 16px;
 }
 
-table.entries-table {
+table.input-form {
+    border-bottom: 1px solid;
+    padding-bottom: 30px;
+}
 
+table.entries-table {
     width: 230px;
     text-align: center;
-    margin: 18px 0;
+    margin-top: 30px;
 }
 
 table.entries-table  td {
@@ -20,7 +24,7 @@ table.entries-table  td {
 }
 
 table.entries-table td.active {
-	    color: #3c763d;
+	color: #3c763d;
     background-color: #dff0d8;
     border-color: #d6e9c6;
 }
@@ -46,7 +50,12 @@ table.result-table h1 {
     cursor: pointer;
 }
 
-#input-num {
+#input-num, #input-name {
 	padding: 8px;
     font-size: 16px;
+}
+
+#result-name {
+    display: none;
+    margin-top: 0;
 }
